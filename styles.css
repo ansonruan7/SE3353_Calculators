@@ -22,10 +22,10 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
-.number, .operator, .equals, .clear{
+.number, .operator, .equals, .clear, .left-bracket, .right-bracket{
     margin: 2rem;
     padding: 1rem;
 }
-.operators-container{
+.operators-container, .bracket-container{
     display: grid;
 }
