@@ -38,96 +38,101 @@ eight.addEventListener('click', () => numberDisplay(8));
 nine.addEventListener('click', () => numberDisplay(9));
 
 //Add event listeners to operators[bCounter]
-plus.addEventListener('click', () => storeOperator("+"));
-minus.addEventListener('click', () => storeOperator("-"));
-divide.addEventListener('click', () => storeOperator("/"));
-multiply.addEventListener('click', () => storeOperator("*"));
+plus.addEventListener('click', () => numberDisplay("+"));
+minus.addEventListener('click', () => numberDisplay("-"));
+divide.addEventListener('click', () => numberDisplay("/"));
+multiply.addEventListener('click', () => numberDisplay("*"));
 
 //Add event listener for equals and clear
 equals.addEventListener('click', calculate);
 clear.addEventListener('click', clearCalc);
 
 //Add bracket event listeners
-left_bracket.addEventListener('click', () => bracketIncrement('('));
-right_bracket.addEventListener('click', () => bracketIncrement(')'));
+left_bracket.addEventListener('click', () => numberDisplay('('));
+right_bracket.addEventListener('click', () => numberDisplay(')'));
 
 //Variable to store number and operators[bCounter] for operations
-let prevNums = {
-    0: [],
-};
-let operators = {
-    0: [],
-};
-let bCounter = 0;
-let bTracker = "";
+// let prevNums = {
+//     0: [],
+// };
+// let operators = {
+//     0: [],
+// };
+// let bCounter = 0;
+// let bTracker = "";
+
+let input = "";
 
 //Store for final equals
-function storeOperator(operator){
-    prevNums[bCounter].push(parseInt(display.innerText));
-    operators[bCounter].push(operator);
-    //Display
-    display.innerText = "";
-}
+// function storeOperator(operator){
+//     prevNums[bCounter].push(parseInt(display.innerText));
+//     operators[bCounter].push(operator);
+//     //Display
+//     display.innerText = "";
+// }
 
 //Display numbers
 function numberDisplay(number){
-    display.innerText += number;
+    display.innerText += number + " ";
 }
 
 //Place brackets in priority
-function bracketIncrement(bracket){
-    if(bracket == ")"){
-        prevNums[bCounter].push(parseInt(display.innerText));
-        display.innerText = "";
-    }
-    //Add to tracker
-    bTracker += bracket;
-    //Check if we are going up a bracket or down a bracket
-    if(bTracker == "()"){
-        bTracker = "";
-        bCounter -= 1;
-    } else {
-        //Increment counter
-        bCounter++;
-    }
-    //Create new bracket array
-    if(prevNums[bCounter] == null){
-        prevNums[bCounter] = [];
-        operators[bCounter] = [];
-    }
-}
+// function bracketIncrement(bracket){
+//     if(bracket == ")"){
+//         prevNums[bCounter].push(parseInt(display.innerText));
+//         display.innerText = "";
+//     }
+//     //Add to tracker
+//     bTracker += bracket;
+//     //Check if we are going up a bracket or down a bracket
+//     if(bTracker == "()"){
+//         bTracker = "";
+//         bCounter -= 1;
+//     } else {
+//         //Increment counter
+//         bCounter++;
+//     }
+//     //Create new bracket array
+//     if(prevNums[bCounter] == null){
+//         prevNums[bCounter] = [];
+//         operators[bCounter] = [];
+//     }
+// }
 
 //Calculations
 function calculate(){
-    console.log(JSON.stringify(prevNums) + '\n' + JSON.stringify(operators));
-    //Temp for result
-    let result;
-    //Do nothing if no numbers inputted
-    for(let b in prevNums){
-        let temp;
-        if(prevNums[b].length != 0){
-            temp = prevNums[b][0];
-            prevNums[b].push(parseInt(display.innerText));
-            for(let i=1;i<prevNums[b].length;i++){
-                //Choose operator
-                switch(operators[b][i-1]){
-                    case "+":
-                        temp += prevNums[b][i];
-                        break;
-                    case "-":
-                        temp -= prevNums[b][i];
-                        break;
-                    case "/":
-                        temp = temp/prevNums[b][i];
-                        break;
-                    case "*":
-                        temp = temp*prevNums[b][i];
-                        break;
-                }
-            }
-        }
-    }
-    display.innerText= String(result);
+    input = display.innerText;
+    display.innerText = eval(input);
+    // //Temp for result
+    // let result;
+    // let bHashLength = Object.keys(prevNums).length;
+    // prevNums[bCounter].push(parseInt(display.innerText));
+    // //Do nothing if no numbers inputted
+    // for(let b=bHashLength-1;b>=0;b--){
+    //     let temp;
+    //     if(prevNums[b].length != 0){
+    //         temp = prevNums[b][0];
+    //         for(let i=1;i<prevNums[b].length;i++){
+    //             //Choose operator
+    //             switch(operators[b][i-1]){
+    //                 case "+":
+    //                     temp += prevNums[b][i];
+    //                     break;
+    //                 case "-":
+    //                     temp -= prevNums[b][i];
+    //                     break;
+    //                 case "/":
+    //                     temp = temp/prevNums[b][i];
+    //                     break;
+    //                 case "*":
+    //                     temp = temp*prevNums[b][i];
+    //                     break;
+    //             }
+    //         }
+    //         console.log(temp);
+    //     }
+    // }
+    // display.innerText= String(result);
 }
 
 //Clear display and queues
