@@ -1,0 +1,31 @@
+.calculator{
+    max-width: 600px;
+}
+.display-container{
+    text-align: center;
+    height: 72px;
+    border: 2px;
+    border-color: black;
+    border-radius: 50px;
+    border-style: solid;
+}
+.display{
+    font-size: 32px;
+    font-weight: bold;
+}
+.buttons{
+    display: flex;
+    width: 600px;
+    justify-content: center;
+}
+.numbers-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.number, .operator, .equals, .clear{
+    margin: 2rem;
+    padding: 1rem;
+}
+.operators-container{
+    display: grid;
+}
