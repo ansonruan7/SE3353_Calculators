@@ -22,6 +22,15 @@ let clear = document.querySelector('#clear');
 let left_bracket = document.querySelector('#left-bracket');
 let right_bracket = document.querySelector('#right-bracket');
 
+let A = document.querySelector('#A');
+let B = document.querySelector('#B');
+let C = document.querySelector('#C');
+let D = document.querySelector('#D');
+let E = document.querySelector('#E');
+
+let MR = document.querySelector('#MR');
+let M = document.querySelector('#M');
+
 //Get display
 let display = document.querySelector('.display')
 
@@ -50,6 +59,33 @@ clear.addEventListener('click', clearCalc);
 //Add bracket event listeners
 left_bracket.addEventListener('click', () => numberDisplay('('));
 right_bracket.addEventListener('click', () => numberDisplay(')'));
+
+//Mem listeners
+A.addEventListener('click', () => {numberDisplay('A')});
+B.addEventListener('click', () => {numberDisplay('B')});
+C.addEventListener('click', () => {numberDisplay('C')});
+D.addEventListener('click', () => {numberDisplay('D')});
+E.addEventListener('click', () => {numberDisplay('E')});
+
+M.addEventListener('click', storeMem);
+
+
+//The mems
+let memory = {
+
+}
+let toBeStored = 0;
+
+//Store memory in appropriate dictionary
+function storeMem(){
+    //On first press
+    if(toBeStored == 0){
+        toBeStored = parseInt(display.innerText);
+    } else { //On second press
+        memory[display.innerText] = toBeStored;
+    }
+    display.innerText = "";
+}
 
 //Variable to store number and operators[bCounter] for operations
 // let prevNums = {
@@ -102,6 +138,15 @@ function numberDisplay(number){
 //Calculations
 function calculate(){
     input = display.innerText;
+    //Input cleaning for eval function
+    let regex = /[A-Z]+\d+/g;
+    let mems = input.match(regex);
+    console.log(mems);
+    if(mems.length > 0){
+        for(let i=0;i<mems.length;i++){
+            input = input.replace(mems[i], String(memory[mems[i]]));
+        }
+    }
     display.innerText = eval(input);
     // //Temp for result
     // let result;

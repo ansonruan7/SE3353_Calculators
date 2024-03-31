@@ -19,6 +19,9 @@ let equals = document.querySelector('#equals');
 
 let clear = document.querySelector('#clear');
 
+let MR = document.querySelector('.left-bracket');
+let M = document.querySelector('.right-bracket');
+
 //Get display
 let display = document.querySelector('.display')
 
@@ -43,6 +46,16 @@ multiply.addEventListener('click', () => storeOperator("multiply"));
 //Add event listener for equals and clear
 equals.addEventListener('click', calculate);
 clear.addEventListener('click', clearCalc);
+
+//Add event for memory
+let memory;
+MR.addEventListener('click', () => {
+    memory = display.innerText;
+    display.innerText = "";
+})
+M.addEventListener('click', () => {
+    display.innerText = memory;
+})
 
 //Display numbers
 function numberDisplay(number){

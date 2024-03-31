@@ -1,5 +1,6 @@
 .calculator{
     max-width: 600px;
+    max-height: 8000px;
 }
 .display-container{
     text-align: center;
@@ -8,10 +9,14 @@
     border-color: black;
     border-radius: 50px;
     border-style: solid;
+    margin: 1rem;
 }
 .display{
     font-size: 32px;
     font-weight: bold;
+}
+.tooltip{
+    text-align: center;
 }
 .buttons{
     display: flex;
