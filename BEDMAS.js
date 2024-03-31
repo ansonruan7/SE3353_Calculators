@@ -141,7 +141,6 @@ function calculate(){
     //Input cleaning for eval function
     let regex = /[A-Z]+\d+/g;
     let mems = input.match(regex);
-    console.log(mems);
     if(mems.length > 0){
         for(let i=0;i<mems.length;i++){
             input = input.replace(mems[i], String(memory[mems[i]]));
